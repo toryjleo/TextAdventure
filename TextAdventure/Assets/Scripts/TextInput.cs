@@ -34,25 +34,24 @@ public class TextInput : MonoBehaviour {
 
     void AcceptStringInput(string userInput)
     {
-        controller.AddToInputLog(userInput);
+        userInput = userInput.Trim();
         userInput = userInput.ToLower();
+        controller.AddToInputLog(userInput);
+
         //controller.LogStringWithReturn(userInput);
         logidx = controller.GetInputLogCount();
 
         char[] delimiterCharacters = {' '};
-        string[] seperatedInputWords = userInput.Split(delimiterCharacters);
 
         for(int i = 0; i < controller.inputActions.Length; i++)
         {
             InputAction inputAction = controller.inputActions[i];
             // Check the string for the input action against the first input string
-            if (inputAction.keyWord == seperatedInputWords[0])
+            if (userInput.StartsWith(inputAction.keyWord))
             {
-                if (seperatedInputWords.Length == 1)
-                    inputAction.RespondToInvalidInput(controller);
-                else 
-                    // Check second word in array
-                    inputAction.RespondToValidInput(controller, seperatedInputWords);
+                string stripped = userInput.TrimStart(inputAction.keyWord.ToCharArray());
+                stripped = stripped.Trim();
+                inputAction.RespondToInput(controller, stripped);
                 break;
             }
         }

@@ -18,4 +18,5 @@ MonoBehaviour:
     exitDescription: You see a dark doorway to the north
     valueLocation: {fileID: 11400000, guid: b51f73f54f9deb34fadd25b8a46d6492, type: 2}
   interactibleNonTakeables: []
-  interactibleItems: []
+  interactibleItems:
+  - {fileID: 11400000, guid: a0a7a57b7cf81cd43bfe093d56806efa, type: 2}

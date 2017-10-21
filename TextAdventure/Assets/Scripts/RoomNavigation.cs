@@ -41,12 +41,11 @@ public class RoomNavigation : MonoBehaviour {
 
     public void AttemptToTakeItemFromRoom(string objectName)
     {
-        var ItemList = new List<InteractibleItem>(currentRoom.interactibleItems);
+        Debug.Log("Item is:" + objectName);
         // Check the takeable items
-        for(int i = 0; i < currentRoom.interactibleItems.Length; i++)
+        foreach(InteractibleItem o in currentRoom.interactibleItems)
         {
-            InteractibleItem o = currentRoom.interactibleItems[i];
-            if (o.name == objectName)
+            if (o.name == objectName && o.isActive)
             {
                 // Add to inventory
                 Debug.Log("Object in room");
@@ -55,11 +54,8 @@ public class RoomNavigation : MonoBehaviour {
                 InteractibleItem fdfd = ScriptableObject.CreateInstance<InteractibleItem>();
                 fdfd.name = o.name;
                 fdfd.description = o.description;
-                if (controller.inventory == null)
-                    Debug.Log("NOOL");
                 controller.inventory.AddItem(fdfd);
-                ItemList.RemoveAt(i);
-                currentRoom.interactibleItems = ItemList.ToArray();
+                o.isActive = false;
                 return;
             }
         }

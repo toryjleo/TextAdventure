@@ -1,20 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
     public Text displayText;
+    public Text errorText;
     public InputAction[] inputActions;
 
     [HideInInspector] public RoomNavigation roomNavigation;
-    [HideInInspector] public Inventory inventory;
+    [HideInInspector] public PlayerInventory inventory;
     [HideInInspector] public List<string> interactionDescriptions;
 
     List<string> actionLog;
     List<string> inputLog;
-
 
 
     // Use this for initialization
@@ -23,7 +24,7 @@ public class GameController : MonoBehaviour {
         inputLog = new List<string>();
         interactionDescriptions = new List<string>();
         roomNavigation = GetComponent<RoomNavigation>();
-        inventory = GetComponent<Inventory>();
+        inventory = GetComponent<PlayerInventory>();
 	}
 
     private void UnpackRoom()
@@ -43,6 +44,12 @@ public class GameController : MonoBehaviour {
     {
         DisplayRoomText();
         DisplayLogText();
+        // Reset the state of all the ScriptableObjects, InteractibleObject in scene
+        InteractibleObject[] s = (InteractibleObject[]) Resources.FindObjectsOfTypeAll(typeof(InteractibleObject));
+        foreach (InteractibleObject v in s)
+        {
+            v.Reset();
+        }
     }
 
     public void DisplayLogText()
