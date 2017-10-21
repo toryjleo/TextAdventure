@@ -61,7 +61,7 @@ public class TextInput : MonoBehaviour {
 
     void InputComplete()
     {
-        controller.DisplayLogText();
+        //controller.DisplayLogText();
         // Puts cursor back in inputfield
         inputField.ActivateInputField();
         inputField.text = null;

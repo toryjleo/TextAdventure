@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 376941199}
   - component: {fileID: 376941198}
   m_Layer: 5
-  m_Name: ErrorOutputText
+  m_Name: FeedbackText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -640,6 +640,16 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: d97c6b71a67c1b84a881e490249d7dec,
         type: 2}
+    - target: {fileID: 114798571894498318, guid: ba775101c23aec247a8a54c20989fdbd,
+        type: 2}
+      propertyPath: errorText
+      value: 
+      objectReference: {fileID: 376941198}
+    - target: {fileID: 114798571894498318, guid: ba775101c23aec247a8a54c20989fdbd,
+        type: 2}
+      propertyPath: feedbackText
+      value: 
+      objectReference: {fileID: 376941198}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba775101c23aec247a8a54c20989fdbd, type: 2}
   m_IsPrefabParent: 0

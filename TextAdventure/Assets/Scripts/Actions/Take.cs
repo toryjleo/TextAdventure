@@ -11,11 +11,11 @@ public class Take : InputAction
         if (seperatedInputWords.Length == 0)
             RespondToInvalidInput(controller);
         else
-            controller.roomNavigation.AttemptToTakeItemFromRoom(/*seperatedInputWords[1]*/ seperatedInputWords);
+            controller.roomNavigation.AttemptToTakeItemFromRoom( seperatedInputWords);
     }
 
     public override void RespondToInvalidInput(GameController gameController)
     {
-        gameController.AddToMainOutput("What are you taking?");
+        gameController.DisplayFeedbackText("What are you taking?");
     }
 }

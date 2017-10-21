@@ -29,28 +29,26 @@ public class RoomNavigation : MonoBehaviour {
         if(exitDictionary.ContainsKey(directionNown))
         {
             currentRoom = exitDictionary[directionNown];
-            controller.AddToMainOutput("You head off to the " + directionNown);
+            controller.DisplayFeedbackText("You head off to the " + directionNown);
             controller.interactionDescriptions.Clear();
             controller.DisplayRoomText();
         }
         else
         {
-            controller.AddToMainOutput("There is no path to the " + directionNown);
+            controller.DisplayFeedbackText("There is no path to the " + directionNown);
         }
     }
 
     public void AttemptToTakeItemFromRoom(string objectName)
     {
-        Debug.Log("Item is:" + objectName);
         // Check the takeable items
         foreach(InteractibleItem o in currentRoom.interactibleItems)
         {
             if (o.name == objectName && o.isActive)
             {
                 // Add to inventory
-                Debug.Log("Object in room");
 
-                controller.AddToMainOutput("You take " + objectName);
+                controller.DisplayFeedbackText("You take " + objectName);
                 InteractibleItem fdfd = ScriptableObject.CreateInstance<InteractibleItem>();
                 fdfd.name = o.name;
                 fdfd.description = o.description;
@@ -64,12 +62,12 @@ public class RoomNavigation : MonoBehaviour {
         {
             if (o.name == objectName)
             {
-                controller.AddToMainOutput("You cannot take " + objectName);
+                controller.DisplayFeedbackText("You cannot take " + objectName);
                 return;
             }
         }
         // If object is not in the room
-        controller.AddToMainOutput("There is no item " + objectName);
+        controller.DisplayFeedbackText("There is no item " + objectName);
     }
 
     public void ClearExits()

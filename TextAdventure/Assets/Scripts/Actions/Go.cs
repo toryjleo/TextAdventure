@@ -16,6 +16,6 @@ public class Go : InputAction
 
     public override void RespondToInvalidInput(GameController controller)
     {
-        controller.AddToMainOutput("Go where?");
+        controller.DisplayFeedbackText("Go where?");
     }
 }

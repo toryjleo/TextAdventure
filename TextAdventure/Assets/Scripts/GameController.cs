@@ -7,20 +7,18 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 
     public Text displayText;
-    public Text errorText;
+    public Text feedbackText;
     public InputAction[] inputActions;
 
     [HideInInspector] public RoomNavigation roomNavigation;
     [HideInInspector] public PlayerInventory inventory;
     [HideInInspector] public List<string> interactionDescriptions;
 
-    List<string> actionLog;
     List<string> inputLog;
 
 
     // Use this for initialization
     void Awake () {
-        actionLog = new List<string>();
         inputLog = new List<string>();
         interactionDescriptions = new List<string>();
         roomNavigation = GetComponent<RoomNavigation>();
@@ -43,7 +41,6 @@ public class GameController : MonoBehaviour {
     private void Start()
     {
         DisplayRoomText();
-        DisplayLogText();
         // Reset the state of all the ScriptableObjects, InteractibleObject in scene
         InteractibleObject[] s = (InteractibleObject[]) Resources.FindObjectsOfTypeAll(typeof(InteractibleObject));
         foreach (InteractibleObject v in s)
@@ -52,16 +49,28 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    public void DisplayLogText()
+    public void DisplayOutputText(string text)
     {
-        string logAsText = string.Join("\n", actionLog.ToArray());
-        displayText.text = logAsText;
+        displayText.text = text;
     }
 
-    public void AddToMainOutput(string stringToAdd)
+    public void DisplayFeedbackText(string text)
     {
-        actionLog.Add(stringToAdd + "\n");
+        feedbackText.text = text;
     }
+
+    public void DisplayRoomText()
+    {
+        ClearCollectionsForNewRoom();
+        UnpackRoom();
+
+        string joinedInteractionDescriptions = string.Join("\n", interactionDescriptions.ToArray());
+        string combinedText = roomNavigation.currentRoom.description + "\n" + string.Join("\n", interactionDescriptions.ToArray());
+
+        DisplayOutputText(combinedText);
+    }
+
+
 
     public void AddToInputLog(string stringToAdd)
     {
@@ -78,14 +87,5 @@ public class GameController : MonoBehaviour {
         return inputLog.Count;
     }
 
-	public void DisplayRoomText()
-    {
-        ClearCollectionsForNewRoom();
-        UnpackRoom();
 
-        string joinedInteractionDescriptions = string.Join("\n", interactionDescriptions.ToArray());
-        string combinedText = roomNavigation.currentRoom.description + "\n" + string.Join("\n", interactionDescriptions.ToArray());
-
-        AddToMainOutput(combinedText);
-    }
 }
