@@ -34,10 +34,10 @@ public class TextInput : MonoBehaviour {
 
     void AcceptStringInput(string userInput)
     {
-        controller.LogStringWithReturn(userInput);
+        controller.AddToInputLog(userInput);
         userInput = userInput.ToLower();
         //controller.LogStringWithReturn(userInput);
-        logidx = controller.GetActionLogCount();
+        logidx = controller.GetInputLogCount();
 
         char[] delimiterCharacters = {' '};
         string[] seperatedInputWords = userInput.Split(delimiterCharacters);
@@ -46,7 +46,7 @@ public class TextInput : MonoBehaviour {
         {
             InputAction inputAction = controller.inputActions[i];
             // Check the string for the input action against the first input string
-            if(inputAction.keyWord == seperatedInputWords[0])
+            if (inputAction.keyWord == seperatedInputWords[0])
             {
                 if (seperatedInputWords.Length == 1)
                     inputAction.RespondToInvalidInput(controller);
@@ -70,10 +70,10 @@ public class TextInput : MonoBehaviour {
 
     private void DisplayNextInput()
     {
-        if (logidx < controller.GetActionLogCount() - 1)
+        if (logidx < controller.GetInputLogCount() - 1)
         {
             logidx++;
-            inputField.text = controller.GetFromActionLogIndex(logidx);
+            inputField.text = controller.GetFromInputLogIndex(logidx);
         }
     }
 
@@ -82,7 +82,7 @@ public class TextInput : MonoBehaviour {
         if(logidx > 0)
         {
             logidx--;
-            inputField.text = controller.GetFromActionLogIndex(logidx);
+            inputField.text = controller.GetFromInputLogIndex(logidx);
         }
     }
 }

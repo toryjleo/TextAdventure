@@ -7,5 +7,5 @@ public class Exit {
 
     public string keyString;
     public string exitDescription;
-    public Room valueRoom;
+    public Location valueLocation;
 }

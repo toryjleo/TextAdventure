@@ -13,6 +13,6 @@ public class Go : InputAction
 
     public override void RespondToInvalidInput(GameController gameController)
     {
-        gameController.LogStringWithReturn("Go where?");
+        gameController.AddToMainOutput("Go where?");
     }
 }

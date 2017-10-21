@@ -9,21 +9,29 @@ public class GameController : MonoBehaviour {
     public InputAction[] inputActions;
 
     [HideInInspector] public RoomNavigation roomNavigation;
+    [HideInInspector] public Inventory inventory;
     [HideInInspector] public List<string> interactionDescriptions;
 
     List<string> actionLog;
+    List<string> inputLog;
+
+
 
     // Use this for initialization
     void Awake () {
         actionLog = new List<string>();
+        inputLog = new List<string>();
         interactionDescriptions = new List<string>();
         roomNavigation = GetComponent<RoomNavigation>();
+        inventory = GetComponent<Inventory>();
 	}
 
     private void UnpackRoom()
     {
         roomNavigation.UnpackExitsInRoom();
     }
+
+    
 
     void ClearCollectionsForNewRoom()
     {
@@ -43,19 +51,24 @@ public class GameController : MonoBehaviour {
         displayText.text = logAsText;
     }
 
-    public void LogStringWithReturn(string stringToAdd)
+    public void AddToMainOutput(string stringToAdd)
     {
         actionLog.Add(stringToAdd + "\n");
     }
 
-    public string GetFromActionLogIndex(int idx)
+    public void AddToInputLog(string stringToAdd)
     {
-        return actionLog[idx];
+        inputLog.Add(stringToAdd);
     }
 
-    public int GetActionLogCount()
+    public string GetFromInputLogIndex(int idx)
     {
-        return actionLog.Count;
+        return inputLog[idx];
+    }
+
+    public int GetInputLogCount()
+    {
+        return inputLog.Count;
     }
 
 	public void DisplayRoomText()
@@ -66,6 +79,6 @@ public class GameController : MonoBehaviour {
         string joinedInteractionDescriptions = string.Join("\n", interactionDescriptions.ToArray());
         string combinedText = roomNavigation.currentRoom.description + "\n" + string.Join("\n", interactionDescriptions.ToArray());
 
-        LogStringWithReturn(combinedText);
+        AddToMainOutput(combinedText);
     }
 }

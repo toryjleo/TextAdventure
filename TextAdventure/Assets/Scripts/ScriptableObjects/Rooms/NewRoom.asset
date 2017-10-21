@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Name: NewRoom
   m_EditorClassIdentifier: 
   description: You are in a vast, dark hall.
-  roomName: Orb Room
+  locationName: Socond Location
   exits:
   - keyString: south
     exitDescription: There is a door to the south with a light coming through it
-    valueRoom: {fileID: 11400000, guid: f965e1495b5fd5443a6e034b12865943, type: 2}
+    valueLocation: {fileID: 11400000, guid: f965e1495b5fd5443a6e034b12865943, type: 2}
+  interactibleNonTakeables: []
+  interactibleItems: []
