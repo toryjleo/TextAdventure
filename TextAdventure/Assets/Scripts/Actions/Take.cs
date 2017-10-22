@@ -6,16 +6,16 @@ using UnityEngine;
 public class Take : InputAction
 {
 
-    public override void RespondToInput(GameController controller, string seperatedInputWords)
+    public override void RespondToInput(GameController controller, string inputWords)
     {
-        if (seperatedInputWords.Length == 0)
+        if (inputWords.Length == 0)
             RespondToInvalidInput(controller);
         else
-            controller.roomNavigation.AttemptToTakeItemFromRoom( seperatedInputWords);
+            controller.roomNavigation.AttemptToTakeItemFromRoom( inputWords);
     }
 
-    public override void RespondToInvalidInput(GameController gameController)
+    public override void RespondToInvalidInput(GameController controller)
     {
-        gameController.DisplayFeedbackText("What are you taking?");
+        controller.DisplayFeedbackText("What are you taking?");
     }
 }

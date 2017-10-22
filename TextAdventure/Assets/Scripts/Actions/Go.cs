@@ -6,12 +6,12 @@ using UnityEngine;
 public class Go : InputAction
 {
 
-    public override void RespondToInput(GameController controller, string seperatedInputWords)
+    public override void RespondToInput(GameController controller, string inputWords)
     {
-        if (seperatedInputWords.Length == 0)
+        if (inputWords.Length == 0)
             RespondToInvalidInput(controller);
         else
-            controller.roomNavigation.AttemptToChangeRooms(seperatedInputWords);
+            controller.roomNavigation.AttemptToChangeRooms(inputWords);
     }
 
     public override void RespondToInvalidInput(GameController controller)

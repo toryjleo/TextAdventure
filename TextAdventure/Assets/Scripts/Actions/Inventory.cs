@@ -11,7 +11,7 @@ public class Inventory : InputAction
         gameController.DisplayFeedbackText("Invalid");
     }
 
-    public override void RespondToInput(GameController gameController, string seperatedInputWords)
+    public override void RespondToInput(GameController gameController, string inputWords)
     {
         gameController.DisplayFeedbackText("Inventory: " + gameController.inventory.GetItemsString());
     }

@@ -590,7 +590,7 @@ Prefab:
     - target: {fileID: 114798571894498318, guid: ba775101c23aec247a8a54c20989fdbd,
         type: 2}
       propertyPath: inputActions.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4237714911567536, guid: ba775101c23aec247a8a54c20989fdbd, type: 2}
       propertyPath: m_LocalPosition.x
@@ -650,6 +650,18 @@ Prefab:
       propertyPath: feedbackText
       value: 
       objectReference: {fileID: 376941198}
+    - target: {fileID: 114259120487959234, guid: ba775101c23aec247a8a54c20989fdbd,
+        type: 2}
+      propertyPath: currentLocation
+      value: 
+      objectReference: {fileID: 11400000, guid: f965e1495b5fd5443a6e034b12865943,
+        type: 2}
+    - target: {fileID: 114798571894498318, guid: ba775101c23aec247a8a54c20989fdbd,
+        type: 2}
+      propertyPath: inputActions.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: bbfd5fdf51126eb4e8fd1da63fd45709,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba775101c23aec247a8a54c20989fdbd, type: 2}
   m_IsPrefabParent: 0

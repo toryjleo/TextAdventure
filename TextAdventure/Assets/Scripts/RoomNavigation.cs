@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomNavigation : MonoBehaviour {
 
-    public Location currentRoom;
+    public Location currentLocation;
 
     Dictionary<string, Location> exitDictionary;
     GameController controller;
@@ -17,10 +17,10 @@ public class RoomNavigation : MonoBehaviour {
 
     public void UnpackExitsInRoom()
     {
-        for(int i = 0; i < currentRoom.exits.Length; i++)
+        for(int i = 0; i < currentLocation.exits.Length; i++)
         {
-            exitDictionary.Add(currentRoom.exits[i].keyString, currentRoom.exits[i].valueLocation);
-            controller.interactionDescriptions.Add(currentRoom.exits[i].exitDescription);
+            exitDictionary.Add(currentLocation.exits[i].keyString, currentLocation.exits[i].valueLocation);
+            controller.interactionDescriptions.Add(currentLocation.exits[i].exitDescription);
         }
     }
 
@@ -28,7 +28,7 @@ public class RoomNavigation : MonoBehaviour {
     {
         if(exitDictionary.ContainsKey(directionNown))
         {
-            currentRoom = exitDictionary[directionNown];
+            currentLocation = exitDictionary[directionNown];
             controller.DisplayFeedbackText("You head off to the " + directionNown);
             controller.interactionDescriptions.Clear();
             controller.DisplayRoomText();
@@ -42,7 +42,7 @@ public class RoomNavigation : MonoBehaviour {
     public void AttemptToTakeItemFromRoom(string objectName)
     {
         // Check the takeable items
-        foreach(InteractibleItem o in currentRoom.interactibleItems)
+        foreach(InteractibleItem o in currentLocation.interactibleItems)
         {
             if (o.name == objectName && o.isActive)
             {
@@ -58,7 +58,7 @@ public class RoomNavigation : MonoBehaviour {
             }
         }
         // Check the non-takeable items
-        foreach(InteractibleNonTakeable o in currentRoom.interactibleNonTakeables)
+        foreach(InteractibleNonTakeable o in currentLocation.interactibleNonTakeables)
         {
             if (o.name == objectName)
             {
@@ -68,6 +68,31 @@ public class RoomNavigation : MonoBehaviour {
         }
         // If object is not in the room
         controller.DisplayFeedbackText("There is no item " + objectName);
+    }
+
+    public bool LookAtItemsInCurrentLocation(string objectName)
+    {
+        // Check the takeable items
+        foreach (InteractibleItem i in currentLocation.interactibleItems)
+        {
+            if (i.name == objectName && i.isActive)
+            {
+                // Display discription
+                controller.DisplayOutputText(i.description);
+                return true;
+            }
+        }
+        // Check the non-takeable items
+        foreach (InteractibleNonTakeable i in currentLocation.interactibleNonTakeables)
+        {
+            if (i.name == objectName)
+            {
+                // Display discription
+                controller.DisplayOutputText(i.description);
+                return true;
+            }
+        }
+        return false;
     }
 
     public void ClearExits()

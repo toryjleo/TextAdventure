@@ -6,8 +6,8 @@ public abstract class InputAction : ScriptableObject {
 
     public string keyWord;
 
-    public abstract void RespondToInput(GameController gameController, string seperatedInputWords);
+    public abstract void RespondToInput(GameController controller, string inputWords);
 
-    public abstract void RespondToInvalidInput(GameController gameController);
+    public abstract void RespondToInvalidInput(GameController controller);
 
 }
